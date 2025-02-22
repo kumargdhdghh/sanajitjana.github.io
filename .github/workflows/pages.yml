@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  # Updated to the latest version
+        uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Build with Jekyll
@@ -27,8 +27,11 @@ jobs:
         with:
           source: ./
           destination: ./_site
+          safe: false  # Disable safe mode for better compatibility
+      - name: Debug _site directory
+        run: ls -la ./_site  # Check if files exist
       - name: Upload artifact
-        uses: actions/upload-artifact@v4  # Updated from v3 to v4
+        uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: ./_site
@@ -41,7 +44,7 @@ jobs:
     needs: build
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4  # Ensure you're using the latest version
+        uses: actions/download-artifact@v4
         with:
           name: github-pages
           path: ./_site

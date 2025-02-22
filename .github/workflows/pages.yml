@@ -18,18 +18,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+      
       - name: Setup Pages
         uses: actions/configure-pages@v2
+      
+      - name: Install dependencies
+        run: bundle install  # Ensures Jekyll dependencies are installed
+      
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
-          safe: false  # Disable safe mode for better compatibility
+      
       - name: Debug _site directory
-        run: ls -la ./_site  # Check if files exist
+        run: |
+          echo "Checking if _site directory exists..."
+          ls -la ./_site || echo "_site directory is missing!"
+      
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -48,6 +56,7 @@ jobs:
         with:
           name: github-pages
           path: ./_site
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2

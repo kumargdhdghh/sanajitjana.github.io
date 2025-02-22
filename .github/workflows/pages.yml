@@ -23,10 +23,16 @@ jobs:
       
       - name: Setup Pages
         uses: actions/configure-pages@v2
+
+      - name: Install Ruby and Bundler
+        run: |
+          sudo apt update
+          sudo apt install -y ruby-full build-essential
+          gem install bundler
       
       - name: Install dependencies
-        run: bundle install  # Ensures Jekyll dependencies are installed
-      
+        run: bundle install  # Now this should work!
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:

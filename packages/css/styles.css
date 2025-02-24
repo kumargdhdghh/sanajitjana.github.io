@@ -303,11 +303,11 @@ img {
   display: inline-flex;
   align-items: center;
   padding: 1rem;
-  transition: 0.3s;
   border-radius: 0.5rem;
   font-size: var(--small-font-size);
   color: var(--title-color);
   font-weight: var(--font-medium);
+  transition: 0.3s all ease;
 }
 
 .resume-button:hover {
@@ -437,7 +437,6 @@ img {
 .button__icon {
   font-size: 1.2rem;
   margin-left: var(--mb-0-5);
-  transition: 0.3s;
 }
 
 .button--white {
